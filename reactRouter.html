@@ -44,6 +44,9 @@ ul.header li a {
 .content li {
   margin-bottom: 10px;
 }
+.active {
+  background-color: #0099FF;
+}
 
   </style>
 </head>
@@ -79,15 +82,47 @@ ul.header li a {
       );
     }
 });
+
+var Contact = React.createClass({
+  render: function() {
+      return (
+        <div>
+          <h2>GOT QUESTIONS?</h2>
+          <p>Visit our home page
+          <a href="http://bnlconsulting.com/"></a>.
+          </p>
+        </div>
+      );
+    }
+});
+ 
+var Stuff = React.createClass({
+  render: function() {
+      return (
+        <div>
+          <h2>STUFF</h2>
+          <p>Mauris sem velit, vehicula eget sodales vitae,
+          rhoncus eget sapien:</p>
+          <ol>
+            <li>Nulla pulvinar diam</li>
+            <li>Facilisis bibendum</li>
+            <li>Vestibulum vulputate</li>
+            <li>Eget erat</li>
+            <li>Id porttitor</li>
+          </ol>
+        </div>
+      );
+    }
+});
     var App = React.createClass({
     render: function() {
     return (
       <div>
         <h1>Simple SPA</h1>
         <ul className="header">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/stuff">Stuff</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><Link to="/stuff" activeClassName="active">Stuff</Link></li>
+          <li><Link to="/contact" activeClassName="active">Contact</Link></li>
         </ul>
         <div className="content">
           {this.props.children}
@@ -100,6 +135,8 @@ ReactDOM.render(
     <Router history={ReactRouter.hashHistory}>
     <Route path="/" component={App}>
     <IndexRoute component={Home}/>
+    <Route path="stuff" component={Stuff} />
+    <Route path="contact" component={Contact} />
     </Route>
     </Router>,
     destination
